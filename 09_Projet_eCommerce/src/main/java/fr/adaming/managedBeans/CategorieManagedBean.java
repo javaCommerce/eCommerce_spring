@@ -27,7 +27,7 @@ public class CategorieManagedBean implements Serializable {
 	@ManagedProperty(value = "#{catService}")
 	private ICategorieService categorieService;
 
-	/**Getter pour l'injection dépendance*/
+	/**setter pour l'injection dépendance*/
 	public void setCategorieService(ICategorieService categorieService) {
 		this.categorieService = categorieService;
 	}
@@ -96,7 +96,7 @@ public class CategorieManagedBean implements Serializable {
 	
 	public String supprCategorie(){
 		
-		int verif = categorieService.supprCategorie(categorie);
+		int verif = categorieService.supprCategorie(this.categorie);
 		
 		if(verif!=0){
 			
@@ -115,7 +115,7 @@ public class CategorieManagedBean implements Serializable {
 	
 	public String modifCategorie(){
 		
-		int verif = categorieService.modifCategorie(categorie);
+		int verif = categorieService.modifCategorie(this.categorie);
 		
 		if(verif!=0){
 			
@@ -133,14 +133,14 @@ public class CategorieManagedBean implements Serializable {
 	
 	public String getCategorieById(){
 		
-		Categorie catCherch = categorieService.getCategorieById(categorie);
+		Categorie catCherch = categorieService.getCategorieById(this.categorie);
 		
 		if(catCherch!=null){
 			
 			this.categorie=catCherch;	
 			this.indice=true;
 			
-			return "accueil";
+			return "rechercheCategorie";
 		}else{
 			
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La recherche de la catégorie à échoué"));
@@ -166,20 +166,6 @@ public class CategorieManagedBean implements Serializable {
 			
 			return "listeCategorie";
 	}
+}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

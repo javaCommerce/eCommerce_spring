@@ -2,6 +2,7 @@ package fr.adaming.dao;
 
 import java.util.List;
 
+import org.apache.commons.codec.binary.Base64;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,7 +26,6 @@ public class CategorieDaoImpl implements ICategorieDao{
 	}
 	
 	
-	
 	@Override
 	public Categorie addCategorie(Categorie cat) {
 		
@@ -39,7 +39,6 @@ public class CategorieDaoImpl implements ICategorieDao{
 		return cat;
 	}
 
-	
 
 	@Override
 	public int supprCategorie(Categorie cat) {
@@ -60,9 +59,7 @@ public class CategorieDaoImpl implements ICategorieDao{
 		/**Envoyer la requeter et récupérer le résultat*/
 		return query.executeUpdate();
 	}
-	
-	
-	
+		
 
 	@Override
 	public int modifCategorie(Categorie cat) {
@@ -86,14 +83,6 @@ public class CategorieDaoImpl implements ICategorieDao{
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-
 	@Override
 	public Categorie getCategorieById(Categorie cat) {
 		
@@ -109,16 +98,11 @@ public class CategorieDaoImpl implements ICategorieDao{
 		/**Passage des parametre*/		
 		query.setParameter("pId", cat.getIdCategorie());	
 		
-		//cat.setImage("data:image/png;base64," + Base64.encodeBase64String(cat.getPhoto()));
+		cat.setImage("data:image/png;base64," + Base64.encodeBase64String(cat.getPhoto()));
 		
 		/**Envoyer la requeter et récupérer le résultat*/
 		return (Categorie) query.uniqueResult();
 	}
-
-	
-	
-	
-	
 	
 	
 	@Override
@@ -133,26 +117,13 @@ public class CategorieDaoImpl implements ICategorieDao{
 		/**Recupération du query*/
 		Query query=s.createQuery(req);
 		
+		List<Categorie> listeCategorie = query.list();
+		
+		for (Categorie cat : listeCategorie) {
+			cat.setImage("data:image/png;base64," + Base64.encodeBase64String(cat.getPhoto()));
+		}
+		
 		/**Envoyer la requeter et récupérer le résultat*/
-		return query.list();
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
+		return listeCategorie;
+	}	
 }
