@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Recherche d'une commande</title>
+</h:head>
+
+<h:body>
+
+	<h:form enctype="multipart/form-data">
+		<h:panelGrid columns="2">
+		
+			ID de la commande recherchée :<p:inputNumber
+				value="#{coMB.commande.idCommande}" />
+
+
+			<h:commandButton value="Rechercher" action="#{coMB.getCommandeById}" />
+		</h:panelGrid>
+	</h:form>
+
+	<p:dataTable var="co" value="#{coMB.commande}"
+		rendered="#{coMB.indice}">
+
+		<p:column headerText="Id">
+			<h:outputText value="#{co.idCommande}" />
+		</p:column>
+
+		<p:column headerText="Date de passage de la commande">
+			<h:outputText value="#{co.dateCommande}" />
+		</p:column>
+
+	</p:dataTable>
+
+
+
+
+
+
+
+
+</h:body>
+</html>

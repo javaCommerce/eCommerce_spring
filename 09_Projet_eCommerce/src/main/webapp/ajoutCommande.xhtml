@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>AJouter une commande</title>
+</h:head>
+
+<h:body>
+
+	<h2 style="text-align: center">Ajouter une commande</h2>
+	<br />
+	<h:form>
+		<p:inputText placeholder="ID du client"
+			value="#{coMB.client.idClient}" />
+
+		<p:calendar placeholder="Date de création"
+			value="#{coMB.commande.dateCommande}" />
+		<br />
+		<p:commandButton value="Passer la commande"
+			action="#{coMB.addCommande}" />
+	</h:form>
+
+
+
+
+
+</h:body>
+</html>
