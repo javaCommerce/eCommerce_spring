@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Ajouter une catégorie</title>
+</h:head>
+
+<h:body>
+
+
+	<h2 style="text-align: center">Ajouter une catégorie</h2>
+	
+	<br />
+	<h:form>
+		<h:panelGrid columns="2">
+		Description :	<p:inputText placeholder="Description"
+				value="#{catMB.categorie.description}" />
+			<br />
+		Nom :	<p:inputText placeholder="Nom de la catégorie"
+				value="#{catMB.categorie.nomCategorie}" />
+			<br />
+		Photo :	<p:fileUpload value="#{catMB.file}" mode="simple"
+				skinSimple="true" />
+			<br />
+			<p:commandButton value="Ajouter" action="#{catMB.ajouterCategorie}"/>
+		</h:panelGrid>
+	</h:form>
+
+	<h1 style="color: red; text-align: center">
+		<h:messages />
+	</h1>
+
+
+</h:body>
+</html>

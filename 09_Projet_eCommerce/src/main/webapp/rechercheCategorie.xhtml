@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Rechercher une catégorie</title>
+</h:head>
+
+<h:body>
+
+
+	<h2 style="text-align: center">Rechercher une catégorie</h2>
+
+	<h:form enctype="multipart/form-data">
+		<h:panelGrid columns="2">
+		
+			ID de la catégorie :<p:inputNumber
+				value="#{catMB.categorie.idCategorie}" />
+			<br />
+			<h:commandButton value="Rechercher"
+				action="#{catMB.getCategorieById}" />
+		</h:panelGrid>
+	</h:form>
+
+
+	<p:dataTable var="cat" value="#{catMB.categorie}"
+		rendered="#{catMB.indice}">
+
+		<p:column headerText="Id">
+			<h:outputText value="#{cat.idCategorie}" />
+		</p:column>
+
+		<p:column headerText="Description">
+			<h:outputText value="#{cat.description}" />
+		</p:column>
+		
+		<p:column headerText="Nom">
+			<h:outputText value="#{cat.nomCategorie}" />
+		</p:column>
+
+		<p:column headerText="Photo">
+			<h:outputText value="#{cat.photo}" />
+		</p:column>
+	</p:dataTable>
+
+
+	<h1 style="color: red; text-align: center">
+		<h:messages />
+	</h1>
+
+
+</h:body>
+</html>
