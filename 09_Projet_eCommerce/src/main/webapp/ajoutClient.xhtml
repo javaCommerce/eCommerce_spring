@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Bienvenue sur le site eCommerce</title>
+</h:head>
+
+<h:body>
+
+	<h:outputStylesheet library="css" name="ajoutClient.css"></h:outputStylesheet>
+
+
+	<div class="login-card">
+		<h2 style="text-align: center">Enregistrer un nouveau compte
+			Client</h2>
+		<br />
+		<h:form>
+			<p:inputText name="nom" placeholder="Nom"
+				value="#{clMB.client.nomClient}" />
+			<p:inputText name="adresse" placeholder="Adresse"
+				value="#{clMB.client.adresse}" />
+			<p:inputText name="mail" placeholder="mail@mail.com"
+				value="#{clMB.client.email}" />
+			<p:inputMask id="phone" value="#{clMB.client.tel}"
+				mask="(+33) 999-999999" placeholder="(+33)999-999999" />
+			<p:commandButton name="login" class="login login-submit"
+				value="S'enregistrer" action="#{clMB.addClient}" />
+		</h:form>
+		<br />
+		<div class="login-help">
+			<a href="#">Déjà inscrit ?</a>
+		</div>
+	</div>
+
+	<!-- <div id="error"><img src="https://dl.dropboxusercontent.com/u/23299152/Delete-icon.png" /> Your caps-lock is on.</div> -->
+
+	<script
+		src='http://codepen.io/assets/libs/fullpage/jquery_and_jqueryui.js'></script>
+
+
+
+
+</h:body>
+</html>

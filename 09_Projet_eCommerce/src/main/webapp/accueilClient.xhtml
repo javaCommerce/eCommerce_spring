@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Bienvenue sur le site eCommerce</title>
+</h:head>
+
+<h:body>
+
+	<h1 style="color: darkblue; text-align: center;">Liste des
+		catégories de produits disponibles sur notre site</h1>
+
+
+	<p:dataTable var="cat" value="#{sessionScope.catListe}">
+
+		<p:column headerText="ID">
+			<h:outputText value="#{cat.idCategorie}" />
+		</p:column>
+
+		<p:column headerText="Nom">
+			<h:outputText value="#{cat.nomCategorie}" />
+		</p:column>
+
+		<p:column headerText="Description">
+			<h:outputText value="#{cat.description}" />
+		</p:column>
+
+		<p:column headerText="Photo">
+			<h:graphicImage value="#{cat.image}"
+				style="width:100px; height:100px" />
+		</p:column>
+
+	</p:dataTable>
+	<h:form>
+		<h:commandButton value="Afficher toutes les catégories"
+			action="#{clMB.getAllCategories}" />
+	</h:form>
+
+	<br />
+	<br />
+
+	<h:form>
+ID de la catégorie dont vous cherchez les produits : <h:inputText
+			value="#{clMB.categorie.idCategorie}" />
+		<br />
+		<br />
+		<h:form>
+			<h:commandButton value="Afficher les produits"
+				action="#{clMB.getAllProduits}" />
+		</h:form>
+		<br />
+		<p:dataTable var="pro" value="#{sessionScope.proListe}">
+			<p:column headerText="Désignation">
+				<h:outputText value="#{pro.designation}" />
+			</p:column>
+
+			<p:column headerText="Description">
+				<h:outputText value="#{pro.description}" />
+			</p:column>
+
+			<p:column headerText="Prix">
+				<h:outputText value="#{pro.prix}" />
+			</p:column>
+
+			<p:column headerText="Quantité">
+				<h:outputText value="#{pro.quantite}" />
+			</p:column>
+
+			<p:column headerText="Photo">
+				<h:graphicImage value="#{pro.image}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+
+
+
+	<h1>
+		<h:messages />
+	</h1>
+
+	<h:form>
+		<h:commandLink value="Supprimer mon compte" action="supprimerClient" />
+		<br />
+		<br />
+		<h:commandLink value="Modifier mes informations"
+			action="modifierClient" />
+	</h:form>
+
+
+
+
+</h:body>
+</html>
