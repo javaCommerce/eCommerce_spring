@@ -2,6 +2,7 @@ package fr.adaming.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +14,8 @@ import fr.adaming.entities.Client;
 public class ClientServiceImpl implements IClientService {
 
 	/** Transformation de l'association UML en Java */
-	IClientDao clientDao;
+	@Autowired
+	private IClientDao clientDao;
 
 	/** Le setter obligatoire pour l'injection de dépendance */
 	public void setClientDao(IClientDao clientDao) {
@@ -27,26 +29,30 @@ public class ClientServiceImpl implements IClientService {
 
 	@Override
 	public int deleteClient(Client c) {
-		// TODO Auto-generated method stub
+
+		/** Récupération du client que l'on souhaite supprimer */
+		Client clientSuppr = clientDao.getClientById(c);
+
+		if (clientSuppr != null) {
+			clientDao.deleteClient(clientSuppr);
+		}
+
 		return 0;
 	}
 
 	@Override
 	public int updateClient(Client c) {
-		// TODO Auto-generated method stub
-		return 0;
+		return clientDao.updateClient(c);
 	}
 
 	@Override
-	public Client getClientByNom(Client c) {
-		// TODO Auto-generated method stub
-		return null;
+	public Client getClientById(Client c) {
+		return clientDao.getClientById(c);
 	}
 
 	@Override
 	public List<Client> getAllClient() {
-		// TODO Auto-generated method stub
-		return null;
+		return clientDao.getAllClient();
 	}
 
 }

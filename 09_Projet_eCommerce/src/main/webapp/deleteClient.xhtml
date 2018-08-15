@@ -12,8 +12,21 @@
 
 <h:body>
 
+	<h:form enctype="multipart/form-data">
+		<h:panelGrid columns="2">
+		
+			ID du client dont on souhaite supprimer le compte :<p:inputNumber
+				value="#{clMB.client.idClient}" />
 
-Page accueil client test
+
+			<h:commandButton value="Supprimer" action="#{clMB.deleteClient}" />
+		</h:panelGrid>
+	</h:form>
+
+
+
+
+
 
 
 </h:body>

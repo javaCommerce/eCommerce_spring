@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Rechercher un client</title>
+</h:head>
+
+<h:body>
+
+
+	<h:form enctype="multipart/form-data">
+		<h:panelGrid columns="2">
+		
+			ID du client recherché :<p:inputNumber
+				value="#{clMB.client.idClient}" />
+
+
+			<h:commandButton value="Rechercher" action="#{clMB.getClientById}" />
+		</h:panelGrid>
+	</h:form>
+
+	<p:dataTable var="cl" value="#{clMB.client}" rendered="#{clMB.indice}">
+
+		<p:column headerText="Id">
+			<h:outputText value="#{cl.idClient}" />
+		</p:column>
+
+		<p:column headerText="Nom">
+			<h:outputText value="#{cl.nomClient}" />
+		</p:column>
+
+
+		<p:column headerText="Adresse">
+			<h:outputText value="#{cl.adresse}" />
+		</p:column>
+
+
+		<p:column headerText="Téléphone">
+			<h:outputText value="#{cl.tel}" />
+		</p:column>
+
+	</p:dataTable>
+
+
+
+
+
+
+</h:body>
+</html>
