@@ -13,11 +13,11 @@ public interface IProduitService {
 	
 	public int supprProduit(Produit p, Categorie cat);
 	
-	public int modifPoduit(Produit p, Categorie cat);
+	public int modifProduit(Produit p, Categorie cat);
 	
 	public List<Produit> getAllProduit(Categorie cat);
 	
-	public Produit getProduitById (Produit p, Categorie cat);
+	public Produit getProduitById (Produit p);
 	
 
 }

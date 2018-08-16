@@ -13,7 +13,7 @@ public interface IProduitDao {
 	
 	public int supprProduit(Produit p);
 	
-	public int modifPoduit(Produit p);
+	public int modifProduit(Produit p);
 	
 	public List<Produit> getAllProduit(Categorie cat);
 	

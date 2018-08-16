@@ -38,9 +38,16 @@ public class ProduitServiceImpl implements IProduitService {
 	}
 
 	@Override
-	public int modifPoduit(Produit p, Categorie cat) {
+	public int modifProduit(Produit p, Categorie cat) {
 		p.setCat(cat);
-		return produitDao.modifPoduit(p);
+		return produitDao.modifProduit(p);
+	}
+
+	
+	@Override
+	public Produit getProduitById(Produit p) {
+		
+		return produitDao.getProduitById(p);
 	}
 
 	@Override
@@ -48,10 +55,7 @@ public class ProduitServiceImpl implements IProduitService {
 		return produitDao.getAllProduit(cat);
 	}
 
-	@Override
-	public Produit getProduitById(Produit p, Categorie cat) {
-		p.setCat(cat);
-		return produitDao.getProduitById(p);
-	}
-
+	
+	
+	
 }

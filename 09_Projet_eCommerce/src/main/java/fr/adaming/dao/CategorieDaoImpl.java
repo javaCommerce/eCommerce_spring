@@ -32,8 +32,8 @@ public class CategorieDaoImpl implements ICategorieDao{
 		/**recupération de la Session*/		
 		Session s = sf.getCurrentSession();
 		
-		/**Méthode persist pour ajouter*/
-		s.persist(cat);		
+		/**Méthode save pour ajouter*/
+		s.save(cat);		
 		
 		/**Envoyer la requeter et récupérer le résultat*/
 		return cat;
@@ -76,7 +76,8 @@ public class CategorieDaoImpl implements ICategorieDao{
 		/**passage des parametres*/		
 		query.setParameter("pDescription", cat.getDescription());
 		query.setParameter("pNomCategorie", cat.getNomCategorie());
-		query.setParameter("pPhoto", cat.getPhoto());		
+		query.setParameter("pPhoto", cat.getPhoto());
+		query.setParameter("pId", cat.getIdCategorie());
 		
 		/**Envoyer la requeter et récupérer le résultat*/
 		return query.executeUpdate();

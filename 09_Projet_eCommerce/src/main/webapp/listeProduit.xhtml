@@ -15,7 +15,7 @@
 	<h1 style="color: red; text-align: center">Liste des produits</h1>
 
 
-	<p:dataTable var="p" value="#{sessionScope.produitListe}">
+	<p:dataTable var="p" value="#{sessionScope.produitListe}" update="@all">
 
 		<p:column headerText="Id">
 			<h:outputText value="#{p.idProduit}" />

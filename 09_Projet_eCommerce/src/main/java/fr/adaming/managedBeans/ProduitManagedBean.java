@@ -24,6 +24,7 @@ public class ProduitManagedBean implements Serializable {
 	private Categorie categorie;
 	private Admin admin;
 	private boolean indice;
+	private List<Produit> listeP;
 
 	/** Transformation de l'association uml en java */
 	@ManagedProperty("#{pService}")
@@ -38,7 +39,7 @@ public class ProduitManagedBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		categorie = (Categorie) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
-				.get("catSession");
+				.get("catSession");		
 	}
 
 	/** Constructeur vide */
@@ -47,12 +48,24 @@ public class ProduitManagedBean implements Serializable {
 		this.produit = new Produit();
 		this.categorie = new Categorie();
 		this.admin = new Admin();
+		
+		
+		
 	}
 
 	/** Getter et setter */
 
+	
 	public Produit getProduit() {
 		return produit;
+	}
+
+	public List<Produit> getListeP() {
+		return listeP;
+	}
+
+	public void setListeP(List<Produit> listeP) {
+		this.listeP = listeP;
 	}
 
 	public void setProduit(Produit produit) {
@@ -113,7 +126,7 @@ public class ProduitManagedBean implements Serializable {
 	
 	public String rechercheProduit(){
 		
-		Produit pCherche = produitService.getProduitById(this.produit, this.categorie);
+		Produit pCherche = produitService.getProduitById(this.produit);
 		
 		if(pCherche!=null){
 			
@@ -152,7 +165,7 @@ public class ProduitManagedBean implements Serializable {
 	
 	public String modifProduit(){
 		
-		int verif = produitService.modifPoduit(this.produit, this.categorie);
+		int verif = produitService.modifProduit(this.produit, this.categorie);
 		
 		if(verif!=0){
 			
@@ -173,11 +186,12 @@ public class ProduitManagedBean implements Serializable {
 	
 	public String getAllProduit(){
 		
-		Produit produitListe= (Produit) produitService.getAllProduit(this.categorie);
+		List<Produit> produitListe= produitService.getAllProduit(this.categorie);
 		
-		if(produitListe!=null){
+		if(produitListe!=null){			
 			
-			this.produit=produitListe;
+			
+			this.listeP=produitListe;
 			
 			return "listeProduit";
 			
