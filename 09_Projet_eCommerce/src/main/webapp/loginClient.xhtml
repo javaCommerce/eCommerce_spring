@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Bienvenue sur le site eCommerce</title>
+</h:head>
+
+<h:body>
+
+	<h:outputStylesheet library="css" name="login.css" />
+
+	<div class="login-card">
+		<h1>Veuillez vous identifiez</h1>
+		<br />
+		<h:form>
+			<h:inputText name="user" placeholder="Email" />
+			<h:inputSecret name="pass" placeholder="Mot de passe" />
+			<p:commandButton name="login" class="login login-submit"
+				value="Se connecter" action="#{clMB.seConnecter}" />
+		</h:form>
+
+		<div class="login-help">
+			<a href="#">Register</a> • <a href="#">Forgot Password</a>
+		</div>
+	</div>
+
+	<script
+		src='http://codepen.io/assets/libs/fullpage/jquery_and_jqueryui.js'></script>
+
+</h:body>
+</html>

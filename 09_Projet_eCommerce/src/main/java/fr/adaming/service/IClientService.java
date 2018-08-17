@@ -16,4 +16,6 @@ public interface IClientService {
 
 	public List<Client> getAllClient();
 
+	public Client isExist(Client c);
+
 }

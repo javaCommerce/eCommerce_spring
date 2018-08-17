@@ -12,7 +12,9 @@ import javax.faces.context.FacesContext;
 
 import fr.adaming.entities.Admin;
 import fr.adaming.entities.Client;
+import fr.adaming.entities.Commande;
 import fr.adaming.service.IClientService;
+import fr.adaming.service.ICommandeService;
 
 @ManagedBean(name = "clMB")
 @RequestScoped
@@ -27,9 +29,16 @@ public class ClientManagedBean implements Serializable {
 	@ManagedProperty(value = "#{clService}")
 	private IClientService clientService;
 
+	@ManagedProperty(value = "#{coService}")
+	private ICommandeService commandeService;
+
 	/** Getters obligatoires pour l'injection de dépendance */
 	public void setClientService(IClientService clientService) {
 		this.clientService = clientService;
+	}
+
+	public void setCommandeService(ICommandeService commandeService) {
+		this.commandeService = commandeService;
 	}
 
 	/**
@@ -76,6 +85,28 @@ public class ClientManagedBean implements Serializable {
 	}
 
 	/** Méthodes du managedBean */
+
+	public String loginClient() {
+
+		/** Vérifier que le client existe */
+		Client clientIn = clientService.isExist(this.client);
+
+		if (clientIn != null) {
+			// ajouter le client trouvé dans la session http
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("clSession", clientIn);
+
+			// récupérer la liste des commandes du client
+			List<Commande> listeCommande = commandeService.getAllCommande(client);
+
+			// ajouter la liste trouvé dans la session http
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("coListe", listeCommande);
+
+			return "accueilClient";
+		}
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage("Vos identifiants de connexion sont erronés"));
+		return "loginClient";
+	}
 
 	public String addClient() {
 

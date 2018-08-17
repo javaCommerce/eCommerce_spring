@@ -2,6 +2,8 @@ package fr.adaming.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -118,4 +120,28 @@ public class ClientDaoImpl implements IClientDao {
 		return query.list();
 	}
 
+	@Override
+	public Client isExist(Client c) {
+
+		try {
+			/** Récupération de la session */
+			Session s = sf.getCurrentSession();
+
+			/** Requête HQL */
+			String req = "FROM Client cl WHERE cl.email=:pMail AND cl.mdp=:pMdp";
+
+			/** Récupération du query */
+			Query query = s.createQuery(req);
+
+			/** Passage des paramètres */
+			query.setParameter("pMail", c.getEmail());
+
+			return (Client) query.uniqueResult();
+
+		} catch (NoResultException ex) {
+			ex.printStackTrace();
+		}
+
+		return null;
+	}
 }
