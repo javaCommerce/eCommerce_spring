@@ -16,25 +16,19 @@ import javax.persistence.Table;
 
 public class Client {
 
-
-
-	
-	
-	
 	/** Déclaration des attribus */
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_cl")
-	
+
 	private Long idClient;
 	private String nomClient;
 	private String adresse;
 	private String email;
 	private String tel;
+	private String mdp;
 
-	
-	
 	/** Déclaration de l'association uml en java */
 	@OneToMany(mappedBy = "client", cascade = CascadeType.PERSIST)
 	private List<Commande> listeCommande;
@@ -80,6 +74,25 @@ public class Client {
 		this.adresse = adresse;
 		this.email = email;
 		this.tel = tel;
+	}
+
+	public Client(Long idClient, String nomClient, String adresse, String email, String tel, String mdp) {
+		super();
+		this.idClient = idClient;
+		this.nomClient = nomClient;
+		this.adresse = adresse;
+		this.email = email;
+		this.tel = tel;
+		this.mdp = mdp;
+	}
+
+	public Client(String nomClient, String adresse, String email, String tel, String mdp) {
+		super();
+		this.nomClient = nomClient;
+		this.adresse = adresse;
+		this.email = email;
+		this.tel = tel;
+		this.mdp = mdp;
 	}
 
 	/** getter setter */
@@ -130,6 +143,14 @@ public class Client {
 
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+
+	public String getMdp() {
+		return mdp;
+	}
+
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
 	}
 
 }

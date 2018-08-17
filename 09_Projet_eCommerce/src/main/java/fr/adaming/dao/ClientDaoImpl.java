@@ -135,6 +135,7 @@ public class ClientDaoImpl implements IClientDao {
 
 			/** Passage des paramètres */
 			query.setParameter("pMail", c.getEmail());
+			query.setParameter("pMdp", c.getMdp());
 
 			return (Client) query.uniqueResult();
 

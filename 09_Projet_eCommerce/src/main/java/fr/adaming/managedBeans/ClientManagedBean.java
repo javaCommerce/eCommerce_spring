@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import fr.adaming.entities.Admin;
 import fr.adaming.entities.Client;
@@ -86,19 +87,21 @@ public class ClientManagedBean implements Serializable {
 
 	/** Méthodes du managedBean */
 
+	/** Définition de la méthode de connexion du client à son compte */
+
 	public String loginClient() {
 
 		/** Vérifier que le client existe */
 		Client clientIn = clientService.isExist(this.client);
 
 		if (clientIn != null) {
-			// ajouter le client trouvé dans la session http
+			/** ajouter le client trouvé dans la session http */
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("clSession", clientIn);
 
-			// récupérer la liste des commandes du client
+			/** récupérer la liste des commandes du client */
 			List<Commande> listeCommande = commandeService.getAllCommande(client);
 
-			// ajouter la liste trouvé dans la session http
+			/** ajouter la liste trouvé dans la session http */
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("coListe", listeCommande);
 
 			return "accueilClient";
@@ -107,6 +110,20 @@ public class ClientManagedBean implements Serializable {
 				new FacesMessage("Vos identifiants de connexion sont erronés"));
 		return "loginClient";
 	}
+
+	/** Définition de la méthode de déconnexion du client à son compte */
+
+	public String logoutClient() {
+
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		session.invalidate();
+
+		return "loginClient";
+	}
+
+	/** Définition des méthodes du CRUD client */
+
+	/** Méthode d'ajout d'un client */
 
 	public String addClient() {
 
@@ -129,6 +146,8 @@ public class ClientManagedBean implements Serializable {
 		}
 
 	}
+
+	/** Méthode de récupération d'un client par son ID */
 
 	public String getClientById() {
 
@@ -153,16 +172,18 @@ public class ClientManagedBean implements Serializable {
 		}
 	}
 
+	/** Méthode de suppression d'un client */
+
 	public String deleteClient() {
 
 		/** Appel de la méthode deleteClient de service */
 		int delVerif = clientService.deleteClient(this.client);
 
 		if (delVerif != 0) {
-			// récupérer la liste des étudiants du formateur
+			/** récupérer la liste des étudiants du formateur */
 			List<Client> listeClient = clientService.getAllClient();
 
-			// ajouter la liste trouvé dans la session http
+			/** ajouter la liste trouvé dans la session http */
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("clListe", listeClient);
 
 			return "accueilClient";
@@ -173,6 +194,8 @@ public class ClientManagedBean implements Serializable {
 		}
 
 	}
+
+	/** Méthode de modification d'un client */
 
 	public String updateClient() {
 

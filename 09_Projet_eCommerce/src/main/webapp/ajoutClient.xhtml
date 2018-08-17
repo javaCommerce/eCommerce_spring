@@ -28,13 +28,17 @@
 				value="#{clMB.client.email}" />
 			<p:inputMask id="phone" value="#{clMB.client.tel}"
 				mask="(+33) 999-999999" placeholder="(+33)999-999999" />
+			<p:password name="mdp" placeholder="Entrez un mot de passe"
+				value="#{clMB.client.mdp}" />
 			<p:commandButton name="login" class="login login-submit"
 				value="S'enregistrer" action="#{clMB.addClient}" />
 		</h:form>
 		<br />
-		<div class="login-help">
-			<a href="#">Déjà inscrit ?</a>
-		</div>
+		<h:form>
+			<div class="login-help">
+				<h:commandLink action="loginClient" style="text-align: center">Déjà inscrit ?</h:commandLink>
+			</div>
+		</h:form>
 	</div>
 
 	<!-- <div id="error"><img src="https://dl.dropboxusercontent.com/u/23299152/Delete-icon.png" /> Your caps-lock is on.</div> -->

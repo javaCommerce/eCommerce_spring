@@ -18,14 +18,18 @@
 		<h1>Veuillez vous identifiez</h1>
 		<br />
 		<h:form>
-			<h:inputText name="user" placeholder="Email" />
-			<h:inputSecret name="pass" placeholder="Mot de passe" />
+			<p:inputText name="user" placeholder="Email"
+				value="#{clMB.client.email}" />
+			<p:password name="pass" placeholder="Mot de passe"
+				value="#{clMB.client.mdp}" />
 			<p:commandButton name="login" class="login login-submit"
-				value="Se connecter" action="#{clMB.seConnecter}" />
+				value="Se connecter" action="#{clMB.loginClient}" />
 		</h:form>
-
+		<br />
 		<div class="login-help">
-			<a href="#">Register</a> • <a href="#">Forgot Password</a>
+			<h:form>
+				<h:commandLink action="ajoutClient" style="text-align: center">Nouveau client ?</h:commandLink>
+			</h:form>
 		</div>
 	</div>
 
