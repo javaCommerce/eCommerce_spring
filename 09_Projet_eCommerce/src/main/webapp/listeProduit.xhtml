@@ -14,6 +14,8 @@
 
 	<h1 style="color: red; text-align: center">Liste des produits</h1>
 
+<h:form enctype="multipart/form-data">
+		<h:panelGrid columns="2">
 
 	<p:dataTable var="p" value="#{sessionScope.produitListe}" update="@all">
 
@@ -30,12 +32,8 @@
 		</p:column>
 
 		<p:column headerText="Photo">
-			<h:outputText value="#{p.photo}" />
-		</p:column>
-
-		<p:column headerText="Photo">
-			<h:outputText value="#{p.photo}" />
-		</p:column>
+			<h:graphicImage value="#{p.image}" style="width:100px;height:100px"/>
+		</p:column>	
 
 		<p:column headerText="Prix">
 			<h:outputText value="#{p.prix}" />
@@ -49,6 +47,15 @@
 	<h1 style="color: red; text-align: center">
 		<h:messages />
 	</h1>
+
+
+
+
+<h:commandButton value="Afficher la liste" action="#{pMB.getAllProduit}" />
+		
+		</h:panelGrid>
+	</h:form>
+
 
 </h:body>
 </html>

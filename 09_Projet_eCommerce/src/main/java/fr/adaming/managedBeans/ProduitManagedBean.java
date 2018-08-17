@@ -10,6 +10,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.model.UploadedFile;
+
 import fr.adaming.entities.Admin;
 import fr.adaming.entities.Categorie;
 import fr.adaming.entities.Produit;
@@ -25,6 +27,7 @@ public class ProduitManagedBean implements Serializable {
 	private Admin admin;
 	private boolean indice;
 	private List<Produit> listeP;
+	private UploadedFile file;
 
 	/** Transformation de l'association uml en java */
 	@ManagedProperty("#{pService}")
@@ -39,7 +42,14 @@ public class ProduitManagedBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		categorie = (Categorie) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
-				.get("catSession");		
+				.get("catSession");	
+		
+		/**Récupérer la liste*/		
+		List<Produit> listeProduit=produitService.getAllProduit();
+		
+		/**Mettre la liste dans la session*/
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("produitListe", listeProduit);
+		
 	}
 
 	/** Constructeur vide */
@@ -58,6 +68,14 @@ public class ProduitManagedBean implements Serializable {
 	
 	public Produit getProduit() {
 		return produit;
+	}
+
+	public UploadedFile getFile() {
+		return file;
+	}
+
+	public void setFile(UploadedFile file) {
+		this.file = file;
 	}
 
 	public List<Produit> getListeP() {
@@ -106,11 +124,12 @@ public class ProduitManagedBean implements Serializable {
 	
 	public String ajouterProduit(){
 		
+		this.produit.setPhoto(file.getContents());
 		Produit pIn = produitService.addProduit(this.produit, this.categorie);
 		
 		if(pIn!=null){
 			
-			List<Produit> listeProduit=produitService.getAllProduit(categorie);
+			List<Produit> listeProduit=produitService.getAllProduit();
 			
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("produitListe", listeProduit);
 		
@@ -148,7 +167,7 @@ public class ProduitManagedBean implements Serializable {
 		
 		if(verif!=0){
 			
-			List<Produit> listeProduit=produitService.getAllProduit(categorie);
+			List<Produit> listeProduit=produitService.getAllProduit();
 			
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("produitListe", listeProduit);
 			
@@ -169,7 +188,7 @@ public class ProduitManagedBean implements Serializable {
 		
 		if(verif!=0){
 			
-			List<Produit> listeProduit=produitService.getAllProduit(categorie);
+			List<Produit> listeProduit=produitService.getAllProduit();
 			
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("produitListe", listeProduit);
 		
@@ -186,7 +205,7 @@ public class ProduitManagedBean implements Serializable {
 	
 	public String getAllProduit(){
 		
-		List<Produit> produitListe= produitService.getAllProduit(this.categorie);
+		List<Produit> produitListe= produitService.getAllProduit();
 		
 		if(produitListe!=null){			
 			

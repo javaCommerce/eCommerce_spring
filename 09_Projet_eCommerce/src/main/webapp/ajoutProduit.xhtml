@@ -17,7 +17,7 @@
 	<h2 style="text-align: center">Ajouter un produit</h2>
 
 	<br />
-	<h:form>
+	<h:form enctype="multipart/form-data">
 		<h:panelGrid columns="2">
 		Description :	<p:inputText placeholder="Description"
 				value="#{pMB.produit.description}" />
@@ -25,14 +25,14 @@
 		Designation :	<p:inputText placeholder="Designation"
 				value="#{pMB.produit.designation}" />
 			<br />
-		Photo :	<p:fileUpload value="#{pMB.produit.photo}" mode="simple"
+		Photo :	<p:fileUpload value="#{pMB.file}" mode="simple"
 				skinSimple="true" />
 			<br />	
 		prix : <p:inputNumber value="#{pMB.produit.prix}" />
 			<br />
 		quantité : <p:inputNumber value="#{pMB.produit.quantite}" />
 			<br />
-		id de la catégorie à lié :	<p:inputNumber value="#{catMB.categorie.idCategorie}" />
+		id de la catégorie à lié :	<p:inputNumber value="#{pMB.categorie.idCategorie}" />
 			<br />
 			<p:commandButton value="Ajouter" action="#{pMB.ajouterProduit}" />
 		</h:panelGrid>

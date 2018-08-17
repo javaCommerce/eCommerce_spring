@@ -22,6 +22,7 @@ public class CategorieManagedBean implements Serializable {
 	private Categorie categorie;
 	private Admin admin;
 	private boolean indice;
+	private List<Categorie> listeC;
 	
 	/**transformation de l'association uml en java*/
 	@ManagedProperty(value = "#{catService}")
@@ -37,6 +38,12 @@ public class CategorieManagedBean implements Serializable {
 	public void init(){
 		admin=(Admin) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("aSession");
 		this.indice=false;
+		
+		/**Récupérer la liste*/	
+		List<Categorie> listeCategorie=categorieService.getAllCategorie();
+		
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("categorieListe", listeCategorie);
+		
 	}
 	
 	/**Déclaration du constructeur vide*/
@@ -69,9 +76,16 @@ public class CategorieManagedBean implements Serializable {
 
 	public void setIndice(boolean indice) {
 		this.indice = indice;
+	}			
+		
+	public List<Categorie> getListeCategorie() {
+		return listeC;
 	}
-	
-	
+
+	public void setListeCategorie(List<Categorie> listeCategorie) {
+		this.listeC = listeCategorie;
+	}
+
 	/**Déclaration des méthodes*/
 	
 	public String ajouterCategorie(){
@@ -152,11 +166,11 @@ public class CategorieManagedBean implements Serializable {
 	
 	public String getAllCategorie(){
 		
-		Categorie categorieListe = (Categorie) categorieService.getAllCategorie();
+		List<Categorie> categorieListe = categorieService.getAllCategorie();
 		
 		if(categorieListe!=null){
 			
-			this.categorie=categorieListe;
+			this.listeC=categorieListe;
 			
 			return"listeCategorie";		
 			

@@ -15,9 +15,12 @@
 
 	<h1 style="color: red; text-align: center">Liste des Categories</h1>
 	
-	<p:dataTable var="cat" value="#{sessionScope.categorieListe}">
+	<h:form enctype="multipart/form-data">
+		<h:panelGrid columns="2">
+	
+	<p:dataTable var="cat" value="#{sessionScope.categorieListe}" update="@all">
 		<p:column headerText="Id">
-			<h:outputText value="#{cat.idcategorie}" />
+			<h:outputText value="#{cat.idCategorie}" />
 		</p:column>
 
 		<p:column headerText="Description">
@@ -36,6 +39,16 @@
 	<h1 style="color: red; text-align: center">
 		<h:messages />
 	</h1>
+	
+	<h:commandButton value="Afficher la liste" action="#{catMB.getAllCategorie}" />
+	
+	
+		</h:panelGrid>
+	</h:form>
+	
+	
+	
+	
 
 </h:body>
 </html>

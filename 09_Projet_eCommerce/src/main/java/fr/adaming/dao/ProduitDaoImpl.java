@@ -81,20 +81,17 @@ public class ProduitDaoImpl implements IProduitDao {
 	}
 
 	@Override
-	public List<Produit> getAllProduit(Categorie cat) {
+	public List<Produit> getAllProduit() {
 		
 		/**recupération de la session*/
 		Session s = sf.getCurrentSession();
 		
 		/**Déclaration de la requete hql*/
-		String req="FROM Produit p WHERE p.categorie.id=:pIdCat";
+		String req="FROM Produit p";
 		
 		/**recupération du query*/
 		Query query = s.createQuery(req);
-		
-		/**Passage des parametres*/
-		query.setParameter("pIdCat", cat.getIdCategorie());		
-		
+				
 		List<Produit> listeProduit=query.list();
 		
 		for (Produit p : listeProduit) {

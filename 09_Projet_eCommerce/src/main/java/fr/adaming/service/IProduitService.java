@@ -15,7 +15,7 @@ public interface IProduitService {
 	
 	public int modifProduit(Produit p, Categorie cat);
 	
-	public List<Produit> getAllProduit(Categorie cat);
+	public List<Produit> getAllProduit();
 	
 	public Produit getProduitById (Produit p);
 	

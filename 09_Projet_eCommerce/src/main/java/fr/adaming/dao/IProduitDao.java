@@ -15,7 +15,7 @@ public interface IProduitDao {
 	
 	public int modifProduit(Produit p);
 	
-	public List<Produit> getAllProduit(Categorie cat);
+	public List<Produit> getAllProduit();
 	
 	public Produit getProduitById (Produit p);
 	
