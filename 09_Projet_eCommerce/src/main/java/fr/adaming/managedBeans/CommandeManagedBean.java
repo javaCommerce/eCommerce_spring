@@ -110,6 +110,10 @@ public class CommandeManagedBean implements Serializable {
 
 		if (commandeGet != null) {
 
+			/**
+			 * Stocker la commande trouvée à l'attribut du mb pour l'afficher
+			 * sur la facelet
+			 */
 			this.commande = commandeGet;
 			this.indice = true;
 
