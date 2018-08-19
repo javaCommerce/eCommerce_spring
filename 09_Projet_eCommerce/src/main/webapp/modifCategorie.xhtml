@@ -12,6 +12,52 @@
 
 <h:body>
 
+<h:outputStylesheet library="css" name="loginAdmin.css" />
+
+	<h:form id="form">
+		<p:megaMenu orientation="#{megaMenuView.orientation}"
+			style="margin-top:20px">
+
+
+			<p:submenu label="Produits" icon="ui-icon-check">
+				<p:column>
+					<p:submenu label="Option des produits">
+						<p:menuitem value="Ajouter un produit" url="ajoutProduit.xhtml" />
+						<p:menuitem value="Rechercher un produit"
+							url="rechercheProduit.xhtml" />
+						<p:menuitem value="Supprimer un produit" url="supprProduit.xhtml" />
+						<p:menuitem value="Modifier un produit" url="modifProduit.xhtml" />
+						<p:menuitem value="Afficher tous les produits"
+							url="listeProduit.xhtml" action="#{pMB.getAllProduit}" ajax="false"/>
+					</p:submenu>
+				</p:column>
+			</p:submenu>
+
+			<p:submenu label="Catégorie de produits" icon="ui-icon-document">
+
+				<p:column>
+					<p:submenu label="Option des catégories">
+						<p:menuitem value="Ajouter une catégorie"
+							url="ajoutCategorie.xhtml" />
+						<p:menuitem value="Rechercher une catégorie"
+							url="rechercheCategorie.xhtml" />
+						<p:menuitem value="afficher toutes les catégories"
+							url="listeCategorie.xhtml" action="#{catMB.getAllCategorie}" />
+						<p:menuitem value="Supprimer une catégorie"
+							url="supprCategorie.xhtml" />
+						<p:menuitem value="Modifier une catégorie"
+							url="modifCategorie.xhtml" />
+					</p:submenu>
+				</p:column>
+			</p:submenu>
+
+		</p:megaMenu>
+	</h:form>
+
+
+
+
+
 	<h2 style="text-align: center">Modifier une catégorie</h2>
 
 	<br />

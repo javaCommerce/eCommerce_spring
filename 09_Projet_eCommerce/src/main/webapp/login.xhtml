@@ -12,14 +12,40 @@
 
 <h:body>
 
+	<h:outputStylesheet library="css" name="loginAdmin.css" />
 
-	<h:form>
-		<h:panelGrid columns="2">
-Mail : <h:inputText value="#{aMB.admin.mail}" />
-Mot de passe : <h:inputSecret value="#{aMB.admin.mdp}" />
-			<h:commandButton value="se connecter" action="#{aMB.connection}" />
-		</h:panelGrid>
-	</h:form>
+
+
+
+
+	<div class="login-card">
+		<h1>Veuillez vous identifiez</h1>
+		<br />
+		<h:form>
+			<p:inputText name="user" placeholder="Email"
+				value="#{aMB.admin.mail}" />
+			<p:password name="pass" placeholder="Mot de passe"
+				value="#{aMB.admin.mdp}" />
+			<p:commandButton name="login" class="login login-submit"
+				value="Se connecter" action="#{aMB.connection}" />
+		</h:form>
+		<br />
+		
+	</div>
+
+	<script
+		src='http://codepen.io/assets/libs/fullpage/jquery_and_jqueryui.js'></script>
+
+
+
+
+
+
+
+
+
+
+
 
 
 </h:body>
