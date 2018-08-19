@@ -110,6 +110,27 @@ public class Produit {
 		this.selectionne = selectionne;
 		this.photo = photo;
 		this.cat = cat;
+	}	
+
+	public Produit(String designation, String description, double prix, int quantite, String image, Categorie cat) {
+		super();
+		this.designation = designation;
+		this.description = description;
+		this.prix = prix;
+		this.quantite = quantite;
+		this.image = image;
+		this.cat = cat;
+	}
+	
+	
+	public Produit(String designation, String description, double prix, int quantite, byte[] photo, Categorie cat) {
+		super();
+		this.designation = designation;
+		this.description = description;
+		this.prix = prix;
+		this.quantite = quantite;
+		this.photo = photo;
+		this.cat = cat;
 	}
 
 	/**

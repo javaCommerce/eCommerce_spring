@@ -22,7 +22,7 @@ public class Categorie {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_cat")
-	private Long idCategorie;
+	private long idCategorie;
 	private String nomCategorie;
 	private String description;
 

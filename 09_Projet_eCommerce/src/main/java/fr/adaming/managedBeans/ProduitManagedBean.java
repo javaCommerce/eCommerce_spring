@@ -15,6 +15,7 @@ import org.primefaces.model.UploadedFile;
 import fr.adaming.entities.Admin;
 import fr.adaming.entities.Categorie;
 import fr.adaming.entities.Produit;
+import fr.adaming.service.ICategorieService;
 import fr.adaming.service.IProduitService;
 
 @ManagedBean(name = "pMB")
@@ -32,6 +33,9 @@ public class ProduitManagedBean implements Serializable {
 	/** Transformation de l'association uml en java */
 	@ManagedProperty("#{pService}")
 	private IProduitService produitService;
+	
+	@ManagedProperty("#{catService}")
+	private ICategorieService categorieService;
 
 	/** Setter pour l'injection dépendance */
 	public void setProduitService(IProduitService produitService) {
@@ -41,6 +45,7 @@ public class ProduitManagedBean implements Serializable {
 	/** Méthode postConstruct */
 	@PostConstruct
 	public void init() {
+		
 		categorie = (Categorie) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
 				.get("catSession");	
 		
@@ -49,6 +54,9 @@ public class ProduitManagedBean implements Serializable {
 		
 		/**Mettre la liste dans la session*/
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("produitListe", listeProduit);
+		
+		
+		
 		
 	}
 
@@ -68,6 +76,10 @@ public class ProduitManagedBean implements Serializable {
 	
 	public Produit getProduit() {
 		return produit;
+	}
+
+	public void setCategorieService(ICategorieService categorieService) {
+		this.categorieService = categorieService;
 	}
 
 	public UploadedFile getFile() {
@@ -124,7 +136,7 @@ public class ProduitManagedBean implements Serializable {
 	
 	public String ajouterProduit(){
 		
-		this.produit.setPhoto(file.getContents());
+		
 		Produit pIn = produitService.addProduit(this.produit, this.categorie);
 		
 		if(pIn!=null){
